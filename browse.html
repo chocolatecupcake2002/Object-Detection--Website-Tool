@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Image difference tool</title>
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-cyborg-gaming.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+    <style>
+      .image-preview{
+        width: 300px;
+        min-height: 250px;
+        border: 2px solid #8b6218;
+        margin-top: 15px;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        font-weight: bold;
+        color: #a27728;
+      }
+
+      .image-preview__image{
+        display: none;
+        width: 300px;          
+      }
+
+      .image-preview1{
+        width: 300px;
+        min-height: 250px;
+        border: 2px solid #8b6218;
+        margin-top: 15px;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        font-weight: bold;
+        color: #a27728;
+      }
+
+      .image-preview__image1{
+        display: none;
+        width: 300px;          
+      }
+    </style>
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a href="index.html" class="logo">
+                        <h4>Image Difference Tool</h4>
+                    </a>
+                    <div class="search-input">
+                      <form id ="search" action="https://www.google.com/search" method="get">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+
+                    <ul class="nav">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="browse.html">Tools</a></li>
+                        <li><a href="details.html">How We Did it</a></li>
+                        <li><a href="profile.html">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+
+          <!-- ***** Featured Games Start ***** -->
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="featured-games header-text">
+                <div class="heading-section">
+                  <h4>SAME IMAGES <em>to find out even small differences </em></h4>
+                </div>
+                <div class="row">
+                  <div class="image-preview">
+                  <img src="assets/images/1img.jpg" width="290" height="210"></div>
+                  <div class="image-preview1">
+                  <img src="assets/images/2img.jpg" width="290" height="210"></div>
+                  <div class="image-preview">
+                    <img src="assets/images/img4.jpg" width="290" height="210"></div>
+                    <div class="image-preview1">
+                    <img src="assets/images/img5.jpg" width="290" height="210"></div>  
+                </div>
+              </div>
+              <div class="main-button">
+                <a href="output.html">Check it out!</a>
+              </div>
+            </div>
+
+                  <div class="col-lg-4">
+                    <div class="top-downloaded">
+                <div class="heading-section">
+                  <h4><em>Top</em> Facts</h4>
+                </div>
+                <ul>
+                  <li>
+                    <h4>Opencv</h4>
+                    <h6>OpenCV is released under a BSD license and hence it's free for both academic and commercial use. It has C++, C, 
+                      Python and Java interfaces and supports Windows, Linux, Mac OS, iOS and Android. When OpenCV was designed the main focus was real-time applications for computational efficienc</h6>
+                  </li>
+                  <li>
+                    <h4>Python</h4>
+                    <h6>Python was developed a hobby project by Guido Van Rossum in December 1989, while he was looking for a hobby project to keep him occupied in the week around Christmas. 
+                      The language's name isn't about snakes, but about the popular British comedy troupe Monty Python.</h6>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="textfield">Processed Image</div>
+          <py-env>
+            - matplotlib
+            - imageio
+            - numpy
+            - scipy
+            - PIL
+        </py-env>
+        
+          <py-script>
+            from PIL import Image, ImageChops
+            
+            img1 = document.getElementById("imagePreview")
+            img2 = document.getElementById("imagePreview1")
+            img1 = Image.open("1img.jpg")
+            img2 = Image.open("2img.jpg")
+            diff = ImageChops.difference(img1, img2)
+            diff.imshow()
+          </py-script>
+          <script>
+            const inpFile = document.getElementById("inpFile");
+            const previewContainer = document.getElementById("imagePreview");
+            const previewImage = previewContainer.querySelector(".image-preview__image")
+            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text")
+          
+            inpFile.addEventListener('change',function(){
+              const file = this.files[0];
+
+              if (file) {
+                const reader = new FileReader();
+                previewDefaultText.style.display = "none";
+                previewImage.style.display = "block";
+
+                reader.addEventListener("load",function(){
+                  console.log(this);
+                  previewImage.setAttribute("src",this.result);
+                });
+                reader.readAsDataURL(file);
+              }
+            });
+
+            const inpFile1 = document.getElementById("inpFile1");
+            const previewContainer1 = document.getElementById("imagePreview1");
+            const previewImage1 = previewContainer1.querySelector(".image-preview__image1")
+            const previewDefaultText1 = previewContainer1.querySelector(".image-preview__default-text1")
+          
+            inpFile1.addEventListener('change',function(){
+              const file1 = this.files[0];
+
+              if (file1) {
+                const reader1 = new FileReader();
+                previewDefaultText1.style.display = "none";
+                previewImage1.style.display = "block";
+
+                reader1.addEventListener("load",function(){
+                  console.log(this);
+                  previewImage1.setAttribute("src",this.result);
+                });
+                reader1.readAsDataURL(file1);
+              }
+            });
+          
+          </script>
+          <!-- ***** Featured Games End ***** -->
+
+          <!-- ***** Start Stream Start ***** -->
+          <div class="start-stream">
+            <div class="col-lg-12">
+              <div class="heading-section">
+                <h4><em>The code used </em>to get results</h4>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="item">
+                    <div class="icon">
+                      <img src="assets/images/service-01.jpg"></div>
+                    <h4>Using pillow library</h4>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="item">
+                    <div class="icon">
+                      <img src="assets/images/service-02.jpg">
+                    </div>
+                    <h4>Using cv lib</h4>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="main-button">
+                    <a href="profile.html">Go To Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Start Stream End ***** -->  
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+
+  <script>
+    function imageShow(){
+           document.getElementById('image').style.display = "block";       
+          }
+</script>
+
+
+  </body>
+
+</html>
